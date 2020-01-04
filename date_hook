@@ -1,0 +1,9 @@
+#!/usr/bin/ash
+
+run_hook ()
+{
+  echo "Asking 1.1.1.1 for date and time to set the clock in early userspace"
+  r=$(/usr/bin/wget -S -O /dev/null 1.1.1.1 2>&1 | /usr/bin/sed -n -e '/  *Date: */ {' -e s///p -e q -e '}')
+  d=$(/usr/bin/date -d "$r" +'%Y-%m-%dT%H:%M:%S')
+  /usr/bin/date -us $d
+}
