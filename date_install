@@ -1,0 +1,16 @@
+#!/bin/bash
+
+build ()
+{
+    add_binary "/usr/bin/date"
+    add_runscript
+}
+
+help ()
+{
+    cat<<HELPEOF
+This hook will add a simple script to initramfs which asks 1.1.1.1 for date and time.
+You can use it if your server does not have a hardware clock but you need the exact
+date and time, i.e. if you like to use tor in the initram.
+HELPEOF
+}
